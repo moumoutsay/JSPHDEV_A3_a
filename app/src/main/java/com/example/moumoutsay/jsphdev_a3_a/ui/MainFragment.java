@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.moumoutsay.jsphdev_a3_a.R;
 import com.example.moumoutsay.jsphdev_a3_a.model.ScoresHolder;
 import com.example.moumoutsay.jsphdev_a3_a.model.Student;
+import com.example.moumoutsay.jsphdev_a3_a.util.DBUtil;
 
 import java.util.List;
 
@@ -52,7 +53,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button_add_score:
                 Log.d(LOG_TAG, "click the button");
-                updateListScores();
+                Student st = updateListScores();
+                if (st == null) { break; }
+                updateDB(st);
                 updateStatResult();
                 resetInputValues();
             break;
@@ -79,18 +82,19 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     /* Update list score part */
-    private void updateListScores() {
+    private Student updateListScores() {
         Log.d(LOG_TAG, "Enter updateListScores()");
 
-        // TODO update data
+        // update data
         Student st = retrieveAScore();
         scoresHolder.addStudent(st);
 
-        // TODO refresh listView
+        // refresh listView
         List<String> scoresList = scoresHolder.getAllScores();
         ArrayAdapter<String> scoresAdapter = new ArrayAdapter<String> (getActivity(), R.layout.fragment_list_one_score, R.id.list_added_data_textview, scoresList);
         ListView lv = (ListView) getActivity().findViewById(R.id.listviewAllScores);
         lv.setAdapter(scoresAdapter);
+        return st;
     }
 
     private Student retrieveAScore() {
@@ -174,5 +178,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         a3.setText(String.format("%.1f", avgScores[2]));
         a4.setText(String.format("%.1f", avgScores[3]));
         a5.setText(String.format("%.1f", avgScores[4]));
+    }
+
+    private void updateDB(Student st) {
+        if (st == null) { return; } // basic error handeling
+        DBUtil dbUtil = new DBUtil(getActivity());
+        dbUtil.addStudentInfo(dbUtil, st.getSID());
+        Log.d(LOG_TAG, "After update, all the student is:\n" + dbUtil.getAllStudentInfo(dbUtil) );
     }
 }
