@@ -9,7 +9,7 @@
     android:background="#FFE4C4"
     tools:context=".MainActivity$PlaceholderFragment">
 
-    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.InputDataFragment"
+    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.ui.InputDataFragment"
         android:id="@+id/input_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_input_data"
     />
 
-    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.ListScoresFragment"
+    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.ui.ListScoresFragment"
         android:id="@+id/list_scores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         />
 
 
-    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.StatResultFragment"
+    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.ui.StatResultFragment"
         android:id="@+id/stat_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

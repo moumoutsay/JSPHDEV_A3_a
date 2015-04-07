@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="3"
-            android:id="@+id/edit_q5"
+            android:id="@+id/edit_q4"
             android:layout_marginLeft="20dp"
             android:hint="Q4"
             />
