@@ -24,7 +24,6 @@ public class DBUtil extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL("DROP TABLE IF EXISTS " + SQLCmd.TB_EXAM_RECORD); // TODO, remove this line
         db.execSQL(SQLCmd.CREATE_TB_STUDENT);
         db.execSQL(SQLCmd.CREATE_TB_EXAM_RECORD);
         Log.d("DBUtil", "Table created");
@@ -35,9 +34,18 @@ public class DBUtil extends SQLiteOpenHelper {
 
     }
 
+    public void dropTables() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + SQLCmd.TB_EXAM_RECORD);
+        db.execSQL("DROP TABLE IF EXISTS " + SQLCmd.TB_STUDENT);
+    }
+
     public void addStudentInfo(DBUtil dbUtil, int sid) {
         SQLiteDatabase db = dbUtil.getWritableDatabase();
         ContentValues cv = new ContentValues();
+
+        onCreate(db);
+
         cv.put(SQLCmd.STUDENT_ID, sid);
 
         db.insertWithOnConflict(SQLCmd.TB_STUDENT, null, cv, SQLiteDatabase.CONFLICT_IGNORE) ;

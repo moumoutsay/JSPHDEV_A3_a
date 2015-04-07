@@ -20,35 +20,35 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_high_q1" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="2"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_high_q2" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="3"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_high_q3" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="4"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_high_q4" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="5"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_high_q5" />
 
@@ -70,35 +70,35 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_low_q1" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="2"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_low_q2" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="3"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_low_q3" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="4"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_low_q4" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="5"
+            android:text="0"
             android:paddingLeft="40dp"
             android:id="@+id/text_low_q5" />
 
@@ -120,35 +120,35 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1"
+            android:text="0.0"
             android:paddingLeft="30dp"
             android:id="@+id/text_avg_q1" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="2"
+            android:text="0.0"
             android:paddingLeft="30dp"
             android:id="@+id/text_avg_q2" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="3"
+            android:text="0.0"
             android:paddingLeft="30dp"
             android:id="@+id/text_avg_q3" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="4"
+            android:text="0.0"
             android:paddingLeft="30dp"
             android:id="@+id/text_avg_q4" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="5"
+            android:text="0.0"
             android:paddingLeft="30dp"
             android:id="@+id/text_avg_q5" />
 

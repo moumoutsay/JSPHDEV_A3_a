@@ -48,6 +48,16 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         button.setOnClickListener(this);
     }
 
+//    @Override
+//    public void onStop() {
+//        DBUtil dbUtil = new DBUtil(getActivity());
+//        dbUtil.dropTables();
+//        Log.d(LOG_TAG, "Drop table is onStop()");
+//
+//        super.onStop();
+//    }
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
