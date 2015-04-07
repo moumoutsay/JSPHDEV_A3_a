@@ -27,8 +27,7 @@ public class ListScoresFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_list_all_scores, container, false);
         /* For the list view part */
         String[] mockData = {
-                "STUD      Q1    Q2    Q3    Q4     Q5",
-                "1234      10    20    30    40     50"
+                "STUD      Q1    Q2    Q3    Q4     Q5"
         };
         List<String> scoresList = Arrays.asList(mockData);
         ArrayAdapter<String> scoresAdapter = new ArrayAdapter<String> (getActivity(), R.layout.fragment_list_one_score, R.id.list_added_data_textview, scoresList);

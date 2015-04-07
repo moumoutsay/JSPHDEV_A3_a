@@ -14,17 +14,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.moumoutsay.jsphdev_a3_a.R;
+import com.example.moumoutsay.jsphdev_a3_a.model.ScoresHolder;
+import com.example.moumoutsay.jsphdev_a3_a.model.Student;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainFragment extends Fragment implements View.OnClickListener {
+    final static int QUIZ_NUM = 5;
     final static String LOG_TAG = MainFragment.class.getSimpleName();
 
+    private ScoresHolder scoresHolder;
+
     public MainFragment() {
+        scoresHolder = new ScoresHolder();
     }
 
     @Override
@@ -47,9 +52,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button_add_score:
                 Log.d(LOG_TAG, "click the button");
-                resetInputValues();
                 updateListScores();
                 updateStatResult();
+                resetInputValues();
             break;
         }
     }
@@ -76,31 +81,85 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     /* Update list score part */
     private void updateListScores() {
         Log.d(LOG_TAG, "Enter updateListScores()");
-        // TODO update data
-        // TODO refresh listView
 
-        // use fake data for now
-                /* For the list view part */
-        String[] mockData = {
-                "STUD      Q1    Q2    Q3    Q4     Q5",
-                "1234      11    21    31    41     51"
-        };
-        List<String> scoresList = Arrays.asList(mockData);
+        // TODO update data
+        Student st = retrieveAScore();
+        scoresHolder.addStudent(st);
+
+        // TODO refresh listView
+        List<String> scoresList = scoresHolder.getAllScores();
         ArrayAdapter<String> scoresAdapter = new ArrayAdapter<String> (getActivity(), R.layout.fragment_list_one_score, R.id.list_added_data_textview, scoresList);
         ListView lv = (ListView) getActivity().findViewById(R.id.listviewAllScores);
         lv.setAdapter(scoresAdapter);
+    }
 
+    private Student retrieveAScore() {
+        Student st = new Student();
+        try  {
+            View view = getView();
+
+            EditText editID = (EditText) view.findViewById(R.id.edit_id);
+            EditText editQ1 = (EditText) view.findViewById(R.id.edit_q1);
+            EditText editQ2 = (EditText) view.findViewById(R.id.edit_q2);
+            EditText editQ3 = (EditText) view.findViewById(R.id.edit_q3);
+            EditText editQ4 = (EditText) view.findViewById(R.id.edit_q4);
+            EditText editQ5 = (EditText) view.findViewById(R.id.edit_q5);
+
+            st.setSID(Integer.parseInt(editID.getText().toString()));
+            int[] scores = new int[QUIZ_NUM];
+
+            scores[0] = Integer.parseInt(editQ1.getText().toString());
+            scores[1] = Integer.parseInt(editQ2.getText().toString());
+            scores[2] = Integer.parseInt(editQ3.getText().toString());
+            scores[3] = Integer.parseInt(editQ4.getText().toString());
+            scores[4] = Integer.parseInt(editQ5.getText().toString());
+            st.setScores(scores);
+
+            if (st.getSID() > 9999 || st.getSID() < 1000) {
+                throw new Exception("InValid id");
+            }
+            for (int i = 0; i < QUIZ_NUM; i++) {
+                if (scores[i] > 100) {
+                    throw new Exception("InValid score: Quiz " + i+1);
+                }
+            }
+
+            return st;
+        } catch (Exception e) {
+            Log.i(LOG_TAG, "The input is invalid" + e.toString());
+        }
+        return null;
     }
 
     /* Stat result part */
     private void updateStatResult() {
         Log.d(LOG_TAG, "Enter updateStatResult()");
-        // TODO update result
-        // TODO refresh display result
+        // Update low score
+        int[] lowScores = scoresHolder.getLow();
+        int[] highScores = scoresHolder.getHigh();
 
-        TextView t = (TextView) getActivity().findViewById(R.id.text_high_q5);
-        t.setText("AsSSSS");
+        TextView h1 = (TextView) getActivity().findViewById(R.id.text_high_q1);
+        TextView h2 = (TextView) getActivity().findViewById(R.id.text_high_q2);
+        TextView h3 = (TextView) getActivity().findViewById(R.id.text_high_q3);
+        TextView h4 = (TextView) getActivity().findViewById(R.id.text_high_q4);
+        TextView h5 = (TextView) getActivity().findViewById(R.id.text_high_q5);
+
+        h1.setText(Integer.toString(highScores[0]));
+        h2.setText(Integer.toString(highScores[1]));
+        h3.setText(Integer.toString(highScores[2]));
+        h4.setText(Integer.toString(highScores[3]));
+        h5.setText(Integer.toString(highScores[4]));
+
+        TextView l1 = (TextView) getActivity().findViewById(R.id.text_low_q1);
+        TextView l2 = (TextView) getActivity().findViewById(R.id.text_low_q2);
+        TextView l3 = (TextView) getActivity().findViewById(R.id.text_low_q3);
+        TextView l4 = (TextView) getActivity().findViewById(R.id.text_low_q4);
+        TextView l5 = (TextView) getActivity().findViewById(R.id.text_low_q5);
+
+        l1.setText(Integer.toString(lowScores[0]));
+        l2.setText(Integer.toString(lowScores[1]));
+        l3.setText(Integer.toString(lowScores[2]));
+        l4.setText(Integer.toString(lowScores[3]));
+        l5.setText(Integer.toString(lowScores[4]));
     }
-
-
 }
