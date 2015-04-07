@@ -185,5 +185,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         DBUtil dbUtil = new DBUtil(getActivity());
         dbUtil.addStudentInfo(dbUtil, st.getSID());
         Log.d(LOG_TAG, "After update, all the student is:\n" + dbUtil.getAllStudentInfo(dbUtil) );
+        dbUtil.addExamRecord(dbUtil, st.getSID(), st.getScores());
+        Log.d(LOG_TAG, "After update, all the scores is:\n" + dbUtil.getAllScores(dbUtil) );
     }
 }

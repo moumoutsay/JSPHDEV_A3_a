@@ -18,36 +18,25 @@ public class SQLCmd {
 
     public static final String STUDENT_ID = "student_id";
 
-    public static final String AMOUNT = "amount";
-    public static final String YEARS = "years";
-    public static final String RATE = "rate";
-    public static final String PROPERTY_TAX = "property_tax";
-    public static final String PROPERTY_INSURANCE = "property_insurance";
-    public static final String MONTHLY_PAYMENT = "monthly_payment";
-    public static final String TOTAL_PAYMENT = "total_payment";
+    public static final String Q1 = "q1";
+    public static final String Q2 = "q2";
+    public static final String Q3 = "q3";
+    public static final String Q4 = "q4";
+    public static final String Q5 = "q5";
+    public static final String FOREIGN_SID = "fsid";
 
     public static final String CREATE_TB_STUDENT = "create table IF NOT EXISTS "
             + TB_STUDENT + " ( " + STUDENT_ID + " INTEGER PRIMARY KEY "
             + " )";
 
-
-//    public static final String CREATE_PAYOFF_DATE = "create table IF NOT EXISTS "
-//            + TB_PAYOFF_DATE + " ( id INTEGER PRIMARY KEY ASC,"
-//            + " begin_mon int,"
-//            + " begin_year int,"
-//            + " total_year int,"
-//            + " payoff_date VARCHAR(30)"
-//            + " )";
-//
-//    //   public String getTotalPayment(double amount, int years, double rate, int propertyTax, int propertyInsurance)
-//    public static final String CREATE_PAYMENT = "create table IF NOT EXISTS "
-//            + TB_PAYMENT + " ( id INTEGER PRIMARY KEY ASC, "
-//            + AMOUNT + " REAL, "
-//            + YEARS + " INTEGER, "
-//            + RATE + " REAL, "
-//            + PROPERTY_TAX + " INTEGER, "
-//            + PROPERTY_INSURANCE + " INTEGER, "
-//            + MONTHLY_PAYMENT + " VARCHAR(30), "
-//            + TOTAL_PAYMENT + " VARCHAR(30) "
-//            + " )";
+    public static final String CREATE_TB_EXAM_RECORD = "create table IF NOT EXISTS "
+            + TB_EXAM_RECORD + " ( id INTEGER PRIMARY KEY ASC, "
+            + Q1 + " INTEGER, "
+            + Q2 + " INTEGER, "
+            + Q3 + " INTEGER, "
+            + Q4 + " INTEGER, "
+            + Q5 + " INTEGER, "
+            + FOREIGN_SID + " INTEGER, "
+            + "FOREIGN KEY(" + FOREIGN_SID + ") REFERENCES " + TB_STUDENT + "(" + STUDENT_ID + ")  ON DELETE CASCADE ON UPDATE CASCADE "
+            + " )";
 }

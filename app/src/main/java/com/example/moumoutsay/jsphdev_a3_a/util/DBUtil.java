@@ -24,8 +24,9 @@ public class DBUtil extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //db.execSQL("DROP TABLE IF EXISTS " + SQLCmd.TB_EXAM_RECORD); // TODO, remove this line
         db.execSQL(SQLCmd.CREATE_TB_STUDENT);
-        //db.execSQL(SQLCmd.CREATE_PAYMENT);
+        db.execSQL(SQLCmd.CREATE_TB_EXAM_RECORD);
         Log.d("DBUtil", "Table created");
     }
 
@@ -43,6 +44,23 @@ public class DBUtil extends SQLiteOpenHelper {
 
         Log.d("DBUtil", "addStudentInfo done");
     }
+
+    public void addExamRecord(DBUtil dbUtil, int sid, int[] scores) {
+        if (scores.length != 5) { return; }
+
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(SQLCmd.FOREIGN_SID, sid);
+        cv.put(SQLCmd.Q1, scores[0]);
+        cv.put(SQLCmd.Q2, scores[1]);
+        cv.put(SQLCmd.Q3, scores[2]);
+        cv.put(SQLCmd.Q4, scores[3]);
+        cv.put(SQLCmd.Q5, scores[4]);
+
+        db.insert(SQLCmd.TB_EXAM_RECORD, null, cv) ;
+        Log.d("DBUtil", "addExamRecord done");
+    }
+
 
     public String getAllStudentInfo(DBUtil dbUtil) {
         StringBuilder sb = new StringBuilder();
@@ -65,88 +83,30 @@ public class DBUtil extends SQLiteOpenHelper {
         return sb.toString();
     }
 
-//    public void addPayoffDate(DBUtil dbUtil, int beginMon, int beginYear, int totalYear, String payoffDate) {
-//        SQLiteDatabase db = dbUtil.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        cv.put("begin_mon", beginMon);
-//        cv.put("begin_year", beginYear);
-//        cv.put("total_year", totalYear);
-//        cv.put("payoff_date", payoffDate);
-//        db.insert(SQLCmd.TB_PAYOFF_DATE, null, cv);
-//
-//        Log.d("DBUtil", "addPayoffDate done");
-//    }
-//
-//    // if not found, return null
-//    public String getPayoffDate (DBUtil dbUtil, int beginMon, int beginYear, int totalYear) {
-//        String res = null;
-//        String[] columns = {"payoff_date"};
-//        SQLiteDatabase db = dbUtil.getReadableDatabase();
-//
-//        onCreate(db);
-//
-//        Cursor cr = db.query(SQLCmd.TB_PAYOFF_DATE, columns,
-//                "begin_mon =? and begin_year =? and total_year =?",
-//                new String[] {Integer.toString(beginMon),Integer.toString(beginYear),Integer.toString(totalYear) },
-//                null, null, null, null);
-//
-//        if (cr.moveToFirst()) {
-//            res = cr.getString(cr.getColumnIndexOrThrow("payoff_date"));
-//        }
-//
-//        Log.d("DBUtil", "getPayoffDate done");
-//
-//        return res;
-//    }
-//
-//    public void addPayment(DBUtil dbUtil, double amount, int years, double rate, int propertyTax,
-//                           int propertyInsurance, String monthlyPayment, String totalPayment) {
-//        SQLiteDatabase db = dbUtil.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        onCreate(db);
-//
-//        cv.put(SQLCmd.AMOUNT, amount);
-//        cv.put(SQLCmd.YEARS, years);
-//        cv.put(SQLCmd.RATE, rate);
-//        cv.put(SQLCmd.PROPERTY_TAX, propertyTax);
-//        cv.put(SQLCmd.PROPERTY_INSURANCE, propertyInsurance);
-//        cv.put(SQLCmd.MONTHLY_PAYMENT, monthlyPayment);
-//        cv.put(SQLCmd.TOTAL_PAYMENT, totalPayment);
-//
-//        db.insert(SQLCmd.TB_PAYMENT, null, cv);
-//
-//        Log.d("DBUtil", "addPayment done");
-//    }
-//
-//    public List<String> getPayment(DBUtil dbUtil, double amount, int years, double rate, int propertyTax,
-//                                   int propertyInsurance) {
-//        List<String> res = null;
-//
-//        String[] columns = {SQLCmd.MONTHLY_PAYMENT, SQLCmd.TOTAL_PAYMENT};
-//        SQLiteDatabase db = dbUtil.getReadableDatabase();
-//        Cursor cr = db.query(SQLCmd.TB_PAYMENT, columns,
-//                SQLCmd.AMOUNT + " =? " + "and " +
-//                        SQLCmd.YEARS + " =? " + "and " +
-//                        SQLCmd.RATE + " =? " + "and " +
-//                        SQLCmd.PROPERTY_TAX + " =? " + "and " +
-//                        SQLCmd.PROPERTY_INSURANCE + " =? ",
-//                new String[] {Double.toString(amount),
-//                        Integer.toString(years),
-//                        Double.toString(rate),
-//                        Integer.toString(propertyTax),
-//                        Integer.toString(propertyInsurance),
-//                },
-//                null, null, null, null);
-//
-//        if (cr.moveToFirst()) {
-//            res = new ArrayList<String>();
-//            res.add(cr.getString(cr.getColumnIndexOrThrow(SQLCmd.MONTHLY_PAYMENT)));
-//            res.add(cr.getString(cr.getColumnIndexOrThrow(SQLCmd.TOTAL_PAYMENT)));
-//        }
-//
-//        Log.d("DBUtil", "getPayment done");
-//
-//        return res;
-//    }
+    public String getAllScores(DBUtil dbUtil) {
+        StringBuilder sb = new StringBuilder();
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        String[] columns = {SQLCmd.FOREIGN_SID, SQLCmd.Q1, SQLCmd.Q2, SQLCmd.Q3, SQLCmd.Q4, SQLCmd.Q5};
 
+        Cursor cr = db.query(SQLCmd.TB_EXAM_RECORD, columns,
+                null,
+                null,
+                null, null, null, null);
+
+        cr.moveToFirst();
+        while (!cr.isAfterLast()) {
+            sb.append("SID: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.FOREIGN_SID)) + " ");
+            sb.append("Q1: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.Q1)) + "  ");
+            sb.append("Q2: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.Q2)) + "  ");
+            sb.append("Q3: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.Q3)) + "  ");
+            sb.append("Q4: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.Q4)) + "  ");
+            sb.append("Q5: " + cr.getString(cr.getColumnIndexOrThrow(SQLCmd.Q5)) + "  ");
+            sb.append("\n");
+            cr.moveToNext();
+        }
+        // make sure to close the cursor
+        cr.close();
+
+        return sb.toString();
+    }
 }
