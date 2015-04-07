@@ -18,6 +18,14 @@
         tools:layout="@layout/fragment_input_data"
     />
 
+    <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.ListScoresFragment"
+        android:id="@+id/list_scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_result"
+        tools:layout="@layout/fragment_list_all_scores"
+        />
+
 
     <fragment android:name="com.example.moumoutsay.jsphdev_a3_a.StatResultFragment"
         android:id="@+id/stat_result"
@@ -27,5 +35,6 @@
         android:layout_marginBottom="1dp"
         tools:layout="@layout/fragment_stat_result"
     />
+
 
 </RelativeLayout>
