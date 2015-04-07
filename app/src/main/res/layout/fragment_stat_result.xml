@@ -121,35 +121,35 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="1"
-            android:paddingLeft="40dp"
+            android:paddingLeft="30dp"
             android:id="@+id/text_avg_q1" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="2"
-            android:paddingLeft="40dp"
+            android:paddingLeft="30dp"
             android:id="@+id/text_avg_q2" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="3"
-            android:paddingLeft="40dp"
+            android:paddingLeft="30dp"
             android:id="@+id/text_avg_q3" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="4"
-            android:paddingLeft="40dp"
+            android:paddingLeft="30dp"
             android:id="@+id/text_avg_q4" />
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="5"
-            android:paddingLeft="40dp"
+            android:paddingLeft="30dp"
             android:id="@+id/text_avg_q5" />
 
     </LinearLayout>

@@ -137,6 +137,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Update low score
         int[] lowScores = scoresHolder.getLow();
         int[] highScores = scoresHolder.getHigh();
+        double[] avgScores = scoresHolder.getAvg();
 
         TextView h1 = (TextView) getActivity().findViewById(R.id.text_high_q1);
         TextView h2 = (TextView) getActivity().findViewById(R.id.text_high_q2);
@@ -161,5 +162,17 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         l3.setText(Integer.toString(lowScores[2]));
         l4.setText(Integer.toString(lowScores[3]));
         l5.setText(Integer.toString(lowScores[4]));
+
+        TextView a1 = (TextView) getActivity().findViewById(R.id.text_avg_q1);
+        TextView a2 = (TextView) getActivity().findViewById(R.id.text_avg_q2);
+        TextView a3 = (TextView) getActivity().findViewById(R.id.text_avg_q3);
+        TextView a4 = (TextView) getActivity().findViewById(R.id.text_avg_q4);
+        TextView a5 = (TextView) getActivity().findViewById(R.id.text_avg_q5);
+
+        a1.setText(String.format("%.1f", avgScores[0]));
+        a2.setText(String.format("%.1f", avgScores[1]));
+        a3.setText(String.format("%.1f", avgScores[2]));
+        a4.setText(String.format("%.1f", avgScores[3]));
+        a5.setText(String.format("%.1f", avgScores[4]));
     }
 }

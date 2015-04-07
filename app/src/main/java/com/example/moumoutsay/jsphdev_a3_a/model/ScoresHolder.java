@@ -86,6 +86,26 @@ public class ScoresHolder {
         return highScores;
     }
 
+    public double[] getAvg() {
+        double [] avgScores = new double[QUIZ_NUM];
+        for (int i = 0; i < avgScores.length; i++) {
+            avgScores[i] = 0;
+        }
+        if ( studentList.size() == 0) {
+            return avgScores;
+        }
+        for (int i = 0; i < studentList.size(); ++i) {
+            int scoreOfAStudent[] = studentList.get(i).getScores();
+            for (int j = 0; j < QUIZ_NUM; ++j) {
+                int aScore = scoreOfAStudent[j];
+                if (aScore > 100 || aScore < 0) { continue; } // do basic error handling here
+                avgScores[j] += aScore;
+            }
+        }
+        for (int i = 0; i < QUIZ_NUM; ++i) {
+            avgScores[i] = avgScores[i] / studentList.size();
+        }
 
-
+        return avgScores;
+    }
 }
